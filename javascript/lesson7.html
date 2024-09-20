@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+        <table border="1" cellpadding="10" align="center">
+            <thead>
+                <th>Sun</th>    
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+            </thead>
+    
+            <tbody align="center" id="calendar">
+    
+            </tbody>
+        </table>
+    </form>
+    <script>
+        // var cal = document.getElementById('calendar');
+        var content = '';
+        let count = 1;
+        let date = new Date(2024,2,0);
+        let lastDate = date.getDate(); //get last day of month;
+        
+        date = new Date(2024,2-1,1);
+        let firstDay = date.getDay();
+        let emptyCount = 0; //count empty td tags
+        let isFirstRow = true; //used to decide it it first row
+        //alert(firstDay);
+        while (count <= lastDate) {
+            content += `<tr>`;
+            let temp = '';
+            while(isFirstRow=== true && emptyCount<firstDay)
+            {
+                temp+=`<td></td>`;
+                emptyCount=emptyCount+1;
+            }
+
+            let column = 1;
+            if(isFirstRow === true)
+            {
+                column = firstDay + 1;
+                isFirstRow = false;
+            }
+            while (column <=7 && count <= lastDate) {
+                temp += `<td>${count}</td>`;
+                column++;
+                count++;
+            }
+            content += temp + `</tr>`;
+        }
+        // cal.innerHTML = content;
+        document.getElementById(`calendar`).innerHTML += content;
+    </script>
+</body>
+
+</html>

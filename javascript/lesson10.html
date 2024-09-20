@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 align="center">calendar</h1>
+    <form action="" onsubmit="return GenerateTable();">
+
+        <hr />
+        <table border="1" align="center" cellpadding="10">
+            <thead>
+                <th colspan="2"><select name="year" id="year" required></select></th>
+                <th colspan="2"><select name="month" id="month" required></select></th>
+                <th colspan="3"><input type="submit" name="submit" value="Generate Calendar" /></th>
+            </thead>
+            <thead>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+            </thead>
+            <tbody id="calendar"></tbody>
+        </table>
+    </form>
+    <script src="gettagid.js"></script>
+    <script>
+        var year = $('year');
+        var month = $('month');
+        var calendar = $('calendar');
+        year.innerHTML = '<option value="">select</option>';
+        var selectYear = 1950;
+        while (selectYear <= 2100) {
+            year.innerHTML += `<option value=${selectYear}>${selectYear}</option>`;
+            selectYear = selectYear + 1;
+        }
+        month.innerHTML = '<option value="">select</option>';
+        var selectMonth = 1;
+        while (selectMonth <= 12) {
+            month.innerHTML += `<option value=${selectMonth}>${selectMonth}</option>`;
+            selectMonth = selectMonth + 1;
+        }
+
+        //user defined function
+        function GenerateTable() {
+            let year = document.getElementById("year").value;
+            let month = document.getElementById("month").value;
+
+            let date = new Date(year, month, 0);
+            let lastDate = date.getDate();
+            date = new Date(year, month - 1, 1);
+            let firstDay = date.getDay();
+
+            var rowCount = '';
+            let dayCount = 1;
+
+            let empty = 0;
+            let blank = true;
+            while (dayCount <= lastDate) {
+                rowCount += `<tr>`;
+                let td = '';
+                let col = 1;
+                while (blank === true && empty < firstDay) {
+                    td += `<td></td>`;
+                    empty = empty + 1;
+                }
+                if (blank === true) {
+                    col = firstDay + 1;
+                    blank = false;
+                }
+                while (col <= 7 && dayCount <= lastDate) {
+                    td += `<td>${dayCount}</td>`;
+                    col++;
+                    dayCount++;
+                }
+                rowCount += td + `</tr>`;
+            }
+
+            $$(`calendar`, rowCount);
+
+            return false;
+        }
+
+
+
+    </script>
+</body>
+
+</html>

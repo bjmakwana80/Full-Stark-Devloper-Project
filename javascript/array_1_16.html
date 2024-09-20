@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1 align="center">Example 1 Array map function use </h1>
+    </header>
+    <hr>
+    <table align="center" cellpadding="10" border="1" cellspacing="0">
+        <tr id="output">
+            
+        </tr>
+    </table>
+    <table align="center" cellpadding="10" border="1" cellspacing="0"><tr>
+        <td>Positive numbers count = <span id="pos"></span></td>
+        <td>Negative numbers count = <span id="neg"></span></td>
+    </tr></table>
+    <script>
+        let numbers = [25,-5,-22,35,60,-10,11,12,-13,14,-15,-16,17,18,-19,20,18,-24,30,20];
+        let positive = 0;
+        let Negative = 0;
+        var output = document.getElementById('output');
+        var pos = document.getElementById('pos');
+        var neg = document.getElementById('neg');
+
+        let randomnum = numbers.map(function(num){
+            let content = `<td align="center">${num}</td>`;
+            console.log(num);
+            if (num >= 0) {
+                positive++;
+            }
+            else if(num <= 0) {
+                Negative++;
+            }
+            output.innerHTML += content;
+
+        })
+        pos.innerHTML = positive;
+        neg.innerHTML = Negative;
+        console.log("Positive numbers count:", positive);
+        console.log("Negative numbers count:", Negative);
+    </script>
+
+</body>
+</html>

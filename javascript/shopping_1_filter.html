@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #output {
+        background-color: aliceblue;
+    }
+
+    .t1 {
+        align-items: center;
+        background-color: antiquewhite;
+        padding-bottom: 10px;
+        flex-wrap: wrap;
+
+    }
+</style>
+
+<body>
+    <table cellpadding="10" cellspacing="1" align="center" id="filter" class="t1">
+        <tr>
+            <td valign="top"><select id="categoryFilter">
+                    <option value="">Select Category</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Footwear">Footwear</option>
+                    <option value="Accessories">Accessories</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Home Appliances">Home Appliances</option>
+                    <option value="Personal Care">Personal Care</option>
+                    <option value="Fitness">Fitness</option>
+                    <option value="Sports">Sports</option>
+                </select>
+            </td>
+            <td valign="top"><select id="priceFilter">
+                    <option value="">Select Price Range</option>
+                    <option value="0-1000">0-1000</option>
+                    <option value="1001-3000">1001-3000</option>
+                    <option value="3001-5000">3001-5000</option>
+                    <option value="5001-10000">5001-10000</option>
+                </select>
+            </td>
+            <td valign="top">
+                <select id="colorFilter">
+                    <option value="">Select Color</option>
+                    <option value="blue">Blue</option>
+                    <option value="green">Green</option>
+                    <option value="black">Black</option>
+                    <option value="red">Red</option>
+                    <option value="pink">Pink</option>
+                    <option value="white">White</option>
+                    <option value="gray">Gray</option>
+                    <option value="navy blue">Navy Blue</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="brown">Brown</option>
+                    <option value="khaki">Khaki</option>
+                    <option value="silver">Silver</option>
+                </select>
+            </td>
+            <td valign="top">
+                <select id="brandFilter">
+                    <option value="">Select Brand</option>
+                    <option value="Friskers">Friskers</option>
+                    <option value="HRX by Hrithik Roshan">HRX by Hrithik Roshan</option>
+                    <option value="Roadster">Roadster</option>
+                    <option value="Tommy Hilfiger">Tommy Hilfiger</option>
+                    <option value="V-Mart">V-Mart</option>
+                    <option value="WROGN">WROGN</option>
+                    <option value="U.S. Polo Assn.">U.S. Polo Assn.</option>
+                    <option value="VIMAL JONNEY">VIMAL JONNEY</option>
+                    <option value="Wilson">Wilson</option>
+                    <option value="Lululemon">Lululemon</option>
+                    <option value="JBL">JBL</option>
+                    <option value="Trek">Trek</option>
+                    <option value="Nike">Nike</option>
+                    <option value="Sony">Sony</option>
+                    <option value="Canon">Canon</option>
+                    <option value="Osprey">Osprey</option>
+                    <option value="Coach">Coach</option>
+                    <option value="Fitbit">Fitbit</option>
+                    <option value="Apple">Apple</option>
+                    <option value="Samsung">Samsung</option>
+                    <option value="Philips">Philips</option>
+                    <option value="NutriBullet">NutriBullet</option>
+                    <option value="LG">LG</option>
+                    <option value="Dyson">Dyson</option>
+                    <option value="Oral-B">Oral-B</option>
+                    <option value="Gillette">Gillette</option>
+                    <option value="ASUS">ASUS</option>
+                    <option value="Logitech">Logitech</option>
+                    <option value="Corsair">Corsair</option>
+                    <option value="Dell">Dell</option>
+                    <option value="Google">Google</option>
+                    <option value="Casio">Casio</option>
+                    <option value="Timberland">Timberland</option>
+                    <option value="Jason Markk">Jason Markk</option>
+                    <option value="Tefal">Tefal</option>
+                </select>
+            </td>
+            <td><button onclick="filterAndDisplayProducts();">Filter</button></td>
+        </tr>
+    </table>
+    <table id="output" align="center" width="90%" border="1" cellpadding="10">
+    </table>
+    <script>
+        var shop = [
+            {
+                "name": "Casual Shirt",
+                "category": "Clothing",
+                "price": 1523,
+                "color": "blue",
+                "brand": "Friskers",
+                "photo": "https://example.com/photos/casual_shirt.jpg"
+            },
+            {
+                "name": "Running Shoes",
+                "category": "Footwear",
+                "price": 2789,
+                "color": "green",
+                "brand": "HRX by Hrithik Roshan",
+                "photo": "https://example.com/photos/running_shoes.jpg"
+            },
+            {
+                "name": "Formal Pants",
+                "category": "Clothing",
+                "price": 1899,
+                "color": "black",
+                "brand": "Roadster",
+                "photo": "https://example.com/photos/formal_pants.jpg"
+            },
+            {
+                "name": "Leather Jacket",
+                "category": "Clothing",
+                "price": 4550,
+                "color": "red",
+                "brand": "Tommy Hilfiger",
+                "photo": "https://example.com/photos/leather_jacket.jpg"
+            },
+            {
+                "name": "Wrist Watch",
+                "category": "Accessories",
+                "price": 3199,
+                "color": "pink",
+                "brand": "V-Mart",
+                "photo": "https://example.com/photos/wrist_watch.jpg"
+            },
+            {
+                "name": "Sports Cap",
+                "category": "Accessories",
+                "price": 850,
+                "color": "white",
+                "brand": "WROGN",
+                "photo": "https://example.com/photos/sports_cap.jpg"
+            },
+            {
+                "name": "Denim Jeans",
+                "category": "Clothing",
+                "price": 2325,
+                "color": "gray",
+                "brand": "U.S. Polo Assn.",
+                "photo": "https://example.com/photos/denim_jeans.jpg"
+            },
+            {
+                "name": "Sneakers",
+                "category": "Footwear",
+                "price": 3990,
+                "color": "navy blue",
+                "brand": "VIMAL JONNEY",
+                "photo": "https://example.com/photos/sneakers.jpg"
+            },
+            {
+                "name": "Casual Shirt",
+                "category": "Clothing",
+                "price": 1550,
+                "color": "yellow",
+                "brand": "Roadster",
+                "photo": "https://example.com/photos/casual_shirt2.jpg"
+            },
+            {
+                "name": "Running Shoes",
+                "category": "Footwear",
+                "price": 2750,
+                "color": "blue",
+                "brand": "HRX by Hrithik Roshan",
+                "photo": "https://example.com/photos/running_shoes2.jpg"
+            },
+            {
+                "name": "Formal Pants",
+                "category": "Clothing",
+                "price": 2150,
+                "color": "green",
+                "brand": "Friskers",
+                "photo": "https://example.com/photos/formal_pants2.jpg"
+            },
+            {
+                "name": "Leather Jacket",
+                "category": "Clothing",
+                "price": 4650,
+                "color": "black",
+                "brand": "Tommy Hilfiger",
+                "photo": "https://example.com/photos/leather_jacket2.jpg"
+            },
+            {
+                "name": "Wrist Watch",
+                "category": "Accessories",
+                "price": 3250,
+                "color": "blue",
+                "brand": "V-Mart",
+                "photo": "https://example.com/photos/wrist_watch2.jpg"
+            },
+            {
+                "name": "Sports Cap",
+                "category": "Accessories",
+                "price": 975,
+                "color": "gray",
+                "brand": "WROGN",
+                "photo": "https://example.com/photos/sports_cap2.jpg"
+            },
+            {
+                "name": "Denim Jeans",
+                "category": "Clothing",
+                "price": 2450,
+                "color": "navy blue",
+                "brand": "U.S. Polo Assn.",
+                "photo": "https://example.com/photos/denim_jeans2.jpg"
+            },
+            {
+                "name": "Sneakers",
+                "category": "Footwear",
+                "price": 3799,
+                "color": "red",
+                "brand": "VIMAL JONNEY",
+                "photo": "https://example.com/photos/sneakers2.jpg"
+            },
+            {
+                "name": "Casual Shirt",
+                "category": "Clothing",
+                "price": 1700,
+                "color": "green",
+                "brand": "Roadster",
+                "photo": "https://example.com/photos/casual_shirt3.jpg"
+            },
+            {
+                "name": "Running Shoes",
+                "category": "Footwear",
+                "price": 2950,
+                "color": "yellow",
+                "brand": "HRX by Hrithik Roshan",
+                "photo": "https://example.com/photos/running_shoes3.jpg"
+            },
+            {
+                "name": "Formal Pants",
+                "category": "Clothing",
+                "price": 2225,
+                "color": "blue",
+                "brand": "Friskers",
+                "photo": "https://example.com/photos/formal_pants3.jpg"
+            },
+            {
+                "name": "Leather Jacket",
+                "category": "Clothing",
+                "price": 4780,
+                "color": "pink",
+                "brand": "Tommy Hilfiger",
+                "photo": "https://example.com/photos/leather_jacket3.jpg"
+            },
+            {
+                "name": "T-Shirt",
+                "category": "Clothing",
+                "price": 950,
+                "color": "blue",
+                "brand": "Roadster",
+                "photo": "https://example.com/photos/tshirt.jpg"
+            },
+            {
+                "name": "Loafers",
+                "category": "Footwear",
+                "price": 3450,
+                "color": "black",
+                "brand": "U.S. Polo Assn.",
+                "photo": "https://example.com/photos/loafers.jpg"
+            },
+            {
+                "name": "Backpack",
+                "category": "Accessories",
+                "price": 2200,
+                "color": "red",
+                "brand": "V-Mart",
+                "photo": "https://example.com/photos/backpack.jpg"
+            },
+            {
+                "name": "Sweatshirt",
+                "category": "Clothing",
+                "price": 1650,
+                "color": "gray",
+                "brand": "Friskers",
+                "photo": "https://example.com/photos/sweatshirt.jpg"
+            },
+            {
+                "name": "Boots",
+                "category": "Footwear",
+                "price": 2899,
+                "color": "brown",
+                "brand": "Tommy Hilfiger",
+                "photo": "https://example.com/photos/boots.jpg"
+            },
+            {
+                "name": "Belt",
+                "category": "Accessories",
+                "price": 500,
+                "color": "black",
+                "brand": "HRX by Hrithik Roshan",
+                "photo": "https://example.com/photos/belt.jpg"
+            },
+            {
+                "name": "Sunglasses",
+                "category": "Accessories",
+                "price": 1299,
+                "color": "blue",
+                "brand": "WROGN",
+                "photo": "https://example.com/photos/sunglasses.jpg"
+            },
+            {
+                "name": "Chinos",
+                "category": "Clothing",
+                "price": 1999,
+                "color": "khaki",
+                "brand": "VIMAL JONNEY",
+                "photo": "https://example.com/photos/chinos.jpg"
+            },
+            {
+                "name": "Flip Flops",
+                "category": "Footwear",
+                "price": 450,
+                "color": "green",
+                "brand": "Roadster",
+                "photo": "https://example.com/photos/flip_flops.jpg"
+            },
+            {
+                "name": "Watch",
+                "category": "Accessories",
+                "price": 2999,
+                "color": "silver",
+                "brand": "U.S. Polo Assn.",
+                "photo": "https://example.com/photos/watch.jpg"
+            },
+            {
+                "name": "Scarf",
+                "category": "Accessories",
+                "price": 899,
+                "color": "pink",
+                "brand": "V-Mart",
+                "photo": "https://example.com/photos/scarf.jpg"
+            },
+            {
+                "name": "Suit",
+                "category": "Clothing",
+                "price": 4999,
+                "color": "black",
+                "brand": "Tommy Hilfiger",
+                "photo": "https://example.com/photos/suit.jpg"
+            },
+            {
+                "name": "Running Shoes",
+                "category": "Footwear",
+                "price": 3299,
+                "color": "blue",
+                "brand": "HRX by Hrithik Roshan",
+                "photo": "https://example.com/photos/running_shoes4.jpg"
+            },
+            {
+                "name": "Cardigan",
+                "category": "Clothing",
+                "price": 2200,
+                "color": "gray",
+                "brand": "Friskers",
+                "photo": "https://example.com/photos/cardigan.jpg"
+            },
+            {
+                "name": "Hiking Boots",
+                "category": "Footwear",
+                "price": 3650,
+                "color": "brown",
+                "brand": "WROGN",
+                "photo": "https://example.com/photos/hiking_boots.jpg"
+            },
+            {
+                "name": "Leather Belt",
+                "category": "Accessories",
+                "price": 1100,
+                "color": "black",
+                "brand": "VIMAL JONNEY",
+                "photo": "https://example.com/photos/leather_belt.jpg"
+            },
+            {
+                "name": "Dress Shirt",
+                "category": "Clothing",
+                "price": 1750,
+                "color": "white",
+                "brand": "U.S. Polo Assn.",
+                "photo": "https://example.com/photos/dress_shirt.jpg"
+            },
+            {
+                "name": "Ankle Boots",
+                "category": "Footwear",
+                "price": 4500,
+                "color": "black",
+                "brand": "Tommy Hilfiger",
+                "photo": "https://example.com/photos/ankle_boots.jpg"
+            },
+            {
+                "name": "Sweater",
+                "category": "Clothing",
+                "price": 1450,
+                "color": "green",
+                "brand": "Roadster",
+                "photo": "https://example.com/photos/sweater.jpg"
+            },
+            {
+                "name": "Trainers",
+                "category": "Footwear",
+                "price": 3100,
+                "color": "blue",
+                "brand": "HRX by Hrithik Roshan",
+                "photo": "https://example.com/photos/trainers.jpg"
+            },
+            {
+                "name": "Bomber Jacket",
+                "category": "Clothing",
+                "price": 3200,
+                "color": "olive",
+                "brand": "Zara",
+                "photo": "https://example.com/photos/bomber_jacket.jpg"
+            },
+            {
+                "name": "Yoga Pants",
+                "category": "Clothing",
+                "price": 1800,
+                "color": "purple",
+                "brand": "Nike",
+                "photo": "https://example.com/photos/yoga_pants.jpg"
+            },
+            {
+                "name": "Trench Coat",
+                "category": "Clothing",
+                "price": 5000,
+                "color": "beige",
+                "brand": "Burberry",
+                "photo": "https://example.com/photos/trench_coat.jpg"
+            },
+            {
+                "name": "Leather Boots",
+                "category": "Footwear",
+                "price": 4200,
+                "color": "brown",
+                "brand": "Timberland",
+                "photo": "https://example.com/photos/leather_boots.jpg"
+            },
+            {
+                "name": "Graphic Tee",
+                "category": "Clothing",
+                "price": 1200,
+                "color": "white",
+                "brand": "Adidas",
+                "photo": "https://example.com/photos/graphic_tee.jpg"
+            },
+            {
+                "name": "Aviator Sunglasses",
+                "category": "Accessories",
+                "price": 2500,
+                "color": "gold",
+                "brand": "Ray-Ban",
+                "photo": "https://example.com/photos/aviator_sunglasses.jpg"
+            },
+            {
+                "name": "Messenger Bag",
+                "category": "Accessories",
+                "price": 2700,
+                "color": "black",
+                "brand": "Coach",
+                "photo": "https://example.com/photos/messenger_bag.jpg"
+            },
+            {
+                "name": "Sports Bra",
+                "category": "Clothing",
+                "price": 1300,
+                "color": "red",
+                "brand": "Under Armour",
+                "photo": "https://example.com/photos/sports_bra.jpg"
+            },
+            {
+                "name": "High Heels",
+                "category": "Footwear",
+                "price": 2900,
+                "color": "silver",
+                "brand": "Steve Madden",
+                "photo": "https://example.com/photos/high_heels.jpg"
+            },
+            {
+                "name": "Hoodie",
+                "category": "Clothing",
+                "price": 2500,
+                "color": "blue",
+                "brand": "Gap",
+                "photo": "https://example.com/photos/hoodie.jpg"
+            },
+            {
+                "name": "Beanie",
+                "category": "Accessories",
+                "price": 700,
+                "color": "gray",
+                "brand": "H&M",
+                "photo": "https://example.com/photos/beanie.jpg"
+            },
+            {
+                "name": "Running Tights",
+                "category": "Clothing",
+                "price": 2100,
+                "color": "black",
+                "brand": "Reebok",
+                "photo": "https://example.com/photos/running_tights.jpg"
+            },
+            {
+                "name": "Chelsea Boots",
+                "category": "Footwear",
+                "price": 3500,
+                "color": "black",
+                "brand": "Clarks",
+                "photo": "https://example.com/photos/chelsea_boots.jpg"
+            },
+            {
+                "name": "Flannel Shirt",
+                "category": "Clothing",
+                "price": 1600,
+                "color": "red",
+                "brand": "Levi's",
+                "photo": "https://example.com/photos/flannel_shirt.jpg"
+            },
+            {
+                "name": "Crossbody Bag",
+                "category": "Accessories",
+                "price": 2200,
+                "color": "brown",
+                "brand": "Michael Kors",
+                "photo": "https://example.com/photos/crossbody_bag.jpg"
+            },
+            {
+                "name": "Polo Shirt",
+                "category": "Clothing",
+                "price": 1450,
+                "color": "navy",
+                "brand": "Lacoste",
+                "photo": "https://example.com/photos/polo_shirt.jpg"
+            },
+            {
+                "name": "Flip-Flops",
+                "category": "Footwear",
+                "price": 500,
+                "color": "blue",
+                "brand": "Old Navy",
+                "photo": "https://example.com/photos/flip_flops2.jpg"
+            },
+            {
+                "name": "Baseball Cap",
+                "category": "Accessories",
+                "price": 800,
+                "color": "green",
+                "brand": "New Era",
+                "photo": "https://example.com/photos/baseball_cap.jpg"
+            },
+            {
+                "name": "Puffer Jacket",
+                "category": "Clothing",
+                "price": 3800,
+                "color": "yellow",
+                "brand": "The North Face",
+                "photo": "https://example.com/photos/puffer_jacket.jpg"
+            },
+            {
+                "name": "Sling Bag",
+                "category": "Accessories",
+                "price": 1500,
+                "color": "gray",
+                "brand": "Adidas",
+                "photo": "https://example.com/photos/sling_bag.jpg"
+            },
+            {
+                "name": "Ankle Boots",
+                "category": "Footwear",
+                "price": 2700,
+                "color": "black",
+                "brand": "Dr. Martens",
+                "photo": "https://example.com/photos/ankle_boots2.jpg"
+            },
+            {
+                "name": "Windbreaker",
+                "category": "Clothing",
+                "price": 3100,
+                "color": "green",
+                "brand": "Puma",
+                "photo": "https://example.com/photos/windbreaker.jpg"
+            },
+            {
+                "name": "Tank Top",
+                "category": "Clothing",
+                "price": 900,
+                "color": "pink",
+                "brand": "Hollister",
+                "photo": "https://example.com/photos/tank_top.jpg"
+            },
+            {
+                "name": "Track Pants",
+                "category": "Clothing",
+                "price": 1400,
+                "color": "black",
+                "brand": "Champion",
+                "photo": "https://example.com/photos/track_pants.jpg"
+            },
+            {
+                "name": "Dress Shoes",
+                "category": "Footwear",
+                "price": 4500,
+                "color": "brown",
+                "brand": "Aldo",
+                "photo": "https://example.com/photos/dress_shoes.jpg"
+            },
+            {
+                "name": "Denim Jacket",
+                "category": "Clothing",
+                "price": 2600,
+                "color": "blue",
+                "brand": "Wrangler",
+                "photo": "https://example.com/photos/denim_jacket.jpg"
+            },
+            {
+                "name": "Sun Hat",
+                "category": "Accessories",
+                "price": 1200,
+                "color": "white",
+                "brand": "Roxy",
+                "photo": "https://example.com/photos/sun_hat.jpg"
+            },
+            {
+                "name": "Leggings",
+                "category": "Clothing",
+                "price": 1700,
+                "color": "gray",
+                "brand": "Gymshark",
+                "photo": "https://example.com/photos/leggings.jpg"
+            },
+            {
+                "name": "Oxford Shirt",
+                "category": "Clothing",
+                "price": 2000,
+                "color": "white",
+                "brand": "Brooks Brothers",
+                "photo": "https://example.com/photos/oxford_shirt.jpg"
+            },
+            {
+                "name": "Blazer",
+                "category": "Clothing",
+                "price": 4900,
+                "color": "black",
+                "brand": "Hugo Boss",
+                "photo": "https://example.com/photos/blazer.jpg"
+            },
+            {
+                "name": "Leather Gloves",
+                "category": "Accessories",
+                "price": 1800,
+                "color": "black",
+                "brand": "Calvin Klein",
+                "photo": "https://example.com/photos/leather_gloves.jpg"
+            },
+            {
+                "name": "Summer Dress",
+                "category": "Clothing",
+                "price": 2300,
+                "color": "yellow",
+                "brand": "Forever 21",
+                "photo": "https://example.com/photos/summer_dress.jpg"
+            },
+            {
+                "name": "Chukka Boots",
+                "category": "Footwear",
+                "price": 3700,
+                "color": "tan",
+                "brand": "Clarks",
+                "photo": "https://example.com/photos/chukka_boots.jpg"
+            },
+            {
+                "name": "Blouse",
+                "category": "Clothing",
+                "price": 1900,
+                "color": "white",
+                "brand": "H&M",
+                "photo": "https://example.com/photos/blouse.jpg"
+            },
+            {
+                "name": "Cargo Pants",
+                "category": "Clothing",
+                "price": 2200,
+                "color": "green",
+                "brand": "GAP",
+                "photo": "https://example.com/photos/cargo_pants.jpg"
+            },
+            {
+                "name": "Raincoat",
+                "category": "Clothing",
+                "price": 2500,
+                "color": "blue",
+                "brand": "Columbia",
+                "photo": "https://example.com/photos/raincoat.jpg"
+            },
+            {
+                "name": "Chelsea Boots",
+                "category": "Footwear",
+                "price": 3500,
+                "color": "black",
+                "brand": "Dr. Martens",
+                "photo": "https://example.com/photos/chelsea_boots2.jpg"
+            },
+            {
+                "name": "Flats",
+                "category": "Footwear",
+                "price": 1500,
+                "color": "red",
+                "brand": "Bata",
+                "photo": "https://example.com/photos/flats.jpg"
+            },
+            {
+                "name": "Henley Shirt",
+                "category": "Clothing",
+                "price": 1100,
+                "color": "gray",
+                "brand": "Uniqlo",
+                "photo": "https://example.com/photos/henley_shirt.jpg"
+            },
+            {
+                "name": "Baseball Jacket",
+                "category": "Clothing",
+                "price": 2800,
+                "color": "navy",
+                "brand": "Nike",
+                "photo": "https://example.com/photos/baseball_jacket.jpg"
+            },
+            {
+                "name": "Boat Shoes",
+                "category": "Footwear",
+                "price": 3000,
+                "color": "brown",
+                "brand": "Sperry",
+                "photo": "https://example.com/photos/boat_shoes.jpg"
+            },
+            {
+                "name": "Fedora Hat",
+                "category": "Accessories",
+                "price": 1200,
+                "color": "black",
+                "brand": "Stetson",
+                "photo": "https://example.com/photos/fedora_hat.jpg"
+            },
+            {
+                "name": "Joggers",
+                "category": "Clothing",
+                "price": 1400,
+                "color": "gray",
+                "brand": "Adidas",
+                "photo": "https://example.com/photos/joggers.jpg"
+            },
+            {
+                "name": "Espadrilles",
+                "category": "Footwear",
+                "price": 1700,
+                "color": "white",
+                "brand": "TOMS",
+                "photo": "https://example.com/photos/espadrilles.jpg"
+            },
+            {
+                "name": "Pashmina Scarf",
+                "category": "Accessories",
+                "price": 2200,
+                "color": "red",
+                "brand": "Pashma",
+                "photo": "https://example.com/photos/pashmina_scarf.jpg"
+            },
+            {
+                "name": "Peacoat",
+                "category": "Clothing",
+                "price": 3500,
+                "color": "navy",
+                "brand": "Banana Republic",
+                "photo": "https://example.com/photos/peacoat.jpg"
+            },
+            {
+                "name": "Leather Loafers",
+                "category": "Footwear",
+                "price": 2800,
+                "color": "brown",
+                "brand": "Gucci",
+                "photo": "https://example.com/photos/leather_loafers.jpg"
+            },
+            {
+                "name": "Gym Shorts",
+                "category": "Clothing",
+                "price": 900,
+                "color": "black",
+                "brand": "Under Armour",
+                "photo": "https://example.com/photos/gym_shorts.jpg"
+            },
+            {
+                "name": "Tote Bag",
+                "category": "Accessories",
+                "price": 2100,
+                "color": "blue",
+                "brand": "Longchamp",
+                "photo": "https://example.com/photos/tote_bag.jpg"
+            },
+            {
+                "name": "Slippers",
+                "category": "Footwear",
+                "price": 500,
+                "color": "pink",
+                "brand": "Hush Puppies",
+                "photo": "https://example.com/photos/slippers.jpg"
+            },
+            {
+                "name": "Tracksuit",
+                "category": "Clothing",
+                "price": 2800,
+                "color": "black",
+                "brand": "Puma",
+                "photo": "https://example.com/photos/tracksuit.jpg"
+            },
+            {
+                "name": "Sun Dress",
+                "category": "Clothing",
+                "price": 2000,
+                "color": "green",
+                "brand": "Zara",
+                "photo": "https://example.com/photos/sun_dress.jpg"
+            },
+            {
+                "name": "Dress Pants",
+                "category": "Clothing",
+                "price": 2600,
+                "color": "gray",
+                "brand": "Hugo Boss",
+                "photo": "https://example.com/photos/dress_pants.jpg"
+            },
+            {
+                "name": "Sports Watch",
+                "category": "Accessories",
+                "price": 3200,
+                "color": "black",
+                "brand": "Garmin",
+                "photo": "https://example.com/photos/sports_watch.jpg"
+            },
+            {
+                "name": "Cocktail Dress",
+                "category": "Clothing",
+                "price": 4200,
+                "color": "red",
+                "brand": "Michael Kors",
+                "photo": "https://example.com/photos/cocktail_dress.jpg"
+            },
+            {
+                "name": "Moccasins",
+                "category": "Footwear",
+                "price": 2500,
+                "color": "tan",
+                "brand": "Minnetonka",
+                "photo": "https://example.com/photos/moccasins.jpg"
+            },
+            {
+                "name": "Kimono",
+                "category": "Clothing",
+                "price": 2800,
+                "color": "purple",
+                "brand": "Uniqlo",
+                "photo": "https://example.com/photos/kimono.jpg"
+            },
+            {
+                "name": "Down Vest",
+                "category": "Clothing",
+                "price": 3000,
+                "color": "black",
+                "brand": "The North Face",
+                "photo": "https://example.com/photos/down_vest.jpg"
+            },
+            {
+                "name": "Clutch",
+                "category": "Accessories",
+                "price": 1800,
+                "color": "gold",
+                "brand": "Chanel",
+                "photo": "https://example.com/photos/clutch.jpg"
+            },
+            {
+                "name": "Running Cap",
+                "category": "Accessories",
+                "price": 1100,
+                "color": "blue",
+                "brand": "Asics",
+                "photo": "https://example.com/photos/running_cap.jpg"
+            },
+            {
+                "name": "Tennis Racket",
+                "category": "Sports",
+                "price": 4500,
+                "color": "white",
+                "brand": "Wilson",
+                "photo": "https://example.com/photos/tennis_racket.jpg"
+            },
+            {
+                "name": "Yoga Mat",
+                "category": "Fitness",
+                "price": 2000,
+                "color": "purple",
+                "brand": "Lululemon",
+                "photo": "https://example.com/photos/yoga_mat.jpg"
+            },
+            {
+                "name": "Bluetooth Speaker",
+                "category": "Electronics",
+                "price": 3200,
+                "color": "black",
+                "brand": "JBL",
+                "photo": "https://example.com/photos/bluetooth_speaker.jpg"
+            },
+            {
+                "name": "Mountain Bike",
+                "category": "Sports",
+                "price": 15000,
+                "color": "red",
+                "brand": "Trek",
+                "photo": "https://example.com/photos/mountain_bike.jpg"
+            },
+            {
+                "name": "Running Shorts",
+                "category": "Clothing",
+                "price": 1200,
+                "color": "blue",
+                "brand": "Nike",
+                "photo": "https://example.com/photos/running_shorts.jpg"
+            },
+            {
+                "name": "Wireless Headphones",
+                "category": "Electronics",
+                "price": 8000,
+                "color": "black",
+                "brand": "Sony",
+                "photo": "https://example.com/photos/wireless_headphones.jpg"
+            },
+            {
+                "name": "Digital Camera",
+                "category": "Electronics",
+                "price": 45000,
+                "color": "black",
+                "brand": "Canon",
+                "photo": "https://example.com/photos/digital_camera.jpg"
+            },
+            {
+                "name": "Travel Backpack",
+                "category": "Accessories",
+                "price": 3500,
+                "color": "green",
+                "brand": "Osprey",
+                "photo": "https://example.com/photos/travel_backpack.jpg"
+            },
+            {
+                "name": "Leather Wallet",
+                "category": "Accessories",
+                "price": 2000,
+                "color": "brown",
+                "brand": "Coach",
+                "photo": "https://example.com/photos/leather_wallet.jpg"
+            },
+            {
+                "name": "Fitness Tracker",
+                "category": "Electronics",
+                "price": 10000,
+                "color": "black",
+                "brand": "Fitbit",
+                "photo": "https://example.com/photos/fitness_tracker.jpg"
+            },
+            {
+                "name": "Smartphone",
+                "category": "Electronics",
+                "price": 60000,
+                "color": "silver",
+                "brand": "Apple",
+                "photo": "https://example.com/photos/smartphone.jpg"
+            },
+            {
+                "name": "Smartwatch",
+                "category": "Electronics",
+                "price": 15000,
+                "color": "black",
+                "brand": "Samsung",
+                "photo": "https://example.com/photos/smartwatch.jpg"
+            },
+            {
+                "name": "Electric Kettle",
+                "category": "Home Appliances",
+                "price": 2500,
+                "color": "white",
+                "brand": "Philips",
+                "photo": "https://example.com/photos/electric_kettle.jpg"
+            },
+            {
+                "name": "Blender",
+                "category": "Home Appliances",
+                "price": 4000,
+                "color": "black",
+                "brand": "NutriBullet",
+                "photo": "https://example.com/photos/blender.jpg"
+            },
+            {
+                "name": "Microwave Oven",
+                "category": "Home Appliances",
+                "price": 12000,
+                "color": "silver",
+                "brand": "LG",
+                "photo": "https://example.com/photos/microwave_oven.jpg"
+            },
+            {
+                "name": "Vacuum Cleaner",
+                "category": "Home Appliances",
+                "price": 8000,
+                "color": "blue",
+                "brand": "Dyson",
+                "photo": "https://example.com/photos/vacuum_cleaner.jpg"
+            },
+            {
+                "name": "Electric Toothbrush",
+                "category": "Personal Care",
+                "price": 3000,
+                "color": "white",
+                "brand": "Oral-B",
+                "photo": "https://example.com/photos/electric_toothbrush.jpg"
+            },
+            {
+                "name": "Hair Dryer",
+                "category": "Personal Care",
+                "price": 4000,
+                "color": "pink",
+                "brand": "Dyson",
+                "photo": "https://example.com/photos/hair_dryer.jpg"
+            },
+            {
+                "name": "Shaving Kit",
+                "category": "Personal Care",
+                "price": 2500,
+                "color": "black",
+                "brand": "Gillette",
+                "photo": "https://example.com/photos/shaving_kit.jpg"
+            },
+            {
+                "name": "Electric Razor",
+                "category": "Personal Care",
+                "price": 5000,
+                "color": "black",
+                "brand": "Philips",
+                "photo": "https://example.com/photos/electric_razor.jpg"
+            },
+            {
+                "name": "Gaming Laptop",
+                "category": "Electronics",
+                "price": 90000,
+                "color": "black",
+                "brand": "ASUS",
+                "photo": "https://example.com/photos/gaming_laptop.jpg"
+            },
+            {
+                "name": "Gaming Mouse",
+                "category": "Electronics",
+                "price": 4000,
+                "color": "black",
+                "brand": "Logitech",
+                "photo": "https://example.com/photos/gaming_mouse.jpg"
+            },
+            {
+                "name": "Gaming Keyboard",
+                "category": "Electronics",
+                "price": 6000,
+                "color": "black",
+                "brand": "Corsair",
+                "photo": "https://example.com/photos/gaming_keyboard.jpg"
+            },
+            {
+                "name": "HD Monitor",
+                "category": "Electronics",
+                "price": 20000,
+                "color": "black",
+                "brand": "Dell",
+                "photo": "https://example.com/photos/hd_monitor.jpg"
+            },
+            {
+                "name": "4K TV",
+                "category": "Electronics",
+                "price": 50000,
+                "color": "black",
+                "brand": "Samsung",
+                "photo": "https://example.com/photos/4k_tv.jpg"
+            },
+            {
+                "name": "Smart Home Speaker",
+                "category": "Electronics",
+                "price": 10000,
+                "color": "white",
+                "brand": "Google",
+                "photo": "https://example.com/photos/smart_home_speaker.jpg"
+            },
+            {
+                "name": "Digital Watch",
+                "category": "Accessories",
+                "price": 2500,
+                "color": "black",
+                "brand": "Casio",
+                "photo": "https://example.com/photos/digital_watch.jpg"
+            },
+            {
+                "name": "Leather Boots",
+                "category": "Footwear",
+                "price": 4000,
+                "color": "brown",
+                "brand": "Timberland",
+                "photo": "https://example.com/photos/leather_boots.jpg"
+            },
+            {
+                "name": "Sneaker Cleaner",
+                "category": "Footwear",
+                "price": 1000,
+                "color": "white",
+                "brand": "Jason Markk",
+                "photo": "https://example.com/photos/sneaker_cleaner.jpg"
+            },
+            {
+                "name": "Cookware Set",
+                "category": "Home Appliances",
+                "price": 7000,
+                "color": "red",
+                "brand": "Tefal",
+                "photo": "https://example.com/photos/cookware_set.jpg"
+            },
+
+        ]
+
+        // Arrow function for filtering products
+        var filterAndDisplayProducts = () => {
+            var output = document.getElementById('output');
+            var categoryFilter = document.getElementById('categoryFilter').value;
+            var priceFilter = document.getElementById('priceFilter').value;
+            var colorFilter = document.getElementById('colorFilter').value;
+            var brandFilter = document.getElementById('brandFilter').value;
+
+            var priceRange = priceFilter.split('-').map(Number);
+            var minPrice = priceRange[0];
+            var maxPrice = priceRange[1];
+
+            var filteredProducts = shop.filter(item =>
+                (categoryFilter === '' || item.category === categoryFilter) &&
+                (priceFilter === '' || (item.price >= minPrice && item.price <= maxPrice)) &&
+                (colorFilter === '' || item.color === colorFilter) &&
+                (brandFilter === '' || item.brand === brandFilter)
+            );
+            let count = 1;
+            let content = '';
+            output.innerHTML = '';
+            filteredProducts.forEach(item => {
+                content += `<td align=center>
+                    <img src="${item.photo}" alt="" width="200" height="200">
+                    <h3>${item.name}</h3>
+                    <p>Category: ${item.category}</p>
+                    <p>Price: ${item.price}</p>
+                    <p>Color: ${item.color}</p>
+                    <p>Brand: ${item.brand}</p>
+                    </td>`;
+
+                if (count % 4 === 0) {
+                    content = '<tr>' + content + '</tr>';
+                    output.innerHTML += content;
+                    content = '';
+                }
+                count++;
+            });
+
+            if (content !== '') {
+                content = '<tr>' + content + '</tr>';
+                output.innerHTML += content;
+            }
+        }
+        filterAndDisplayProducts();
+    </script>
+</body>
+
+</html>

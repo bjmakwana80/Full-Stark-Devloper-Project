@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian States Table</title>
+</head>
+<body>
+    <h1 align="center">Indian States</h1>
+    <table align="center" border="1" width="80%" cellpadding="10" cellspacing="0">
+        <thead>
+            <tr>
+                <th>State</th>
+                <th>Capital</th>
+                <th>Chief Minister</th>
+                <th>Population</th>
+            </tr>
+        </thead>
+        <tbody id="statesTable">
+        </tbody>
+    </table>
+
+    <script>
+        var indianStates = [
+            { state: "Andhra Pradesh", capital: "Amaravati", cm: "Y. S. Jagan Mohan Reddy", population: 49577103 },
+            { state: "Arunachal Pradesh", capital: "Itanagar", cm: "Pema Khandu", population: 1383727 },
+            { state: "Assam", capital: "Dispur", cm: "Himanta Biswa Sarma", population: 31205576 },
+            { state: "Bihar", capital: "Patna", cm: "Nitish Kumar", population: 104099452 },
+            { state: "Chhattisgarh", capital: "Raipur", cm: "Bhupesh Baghel", population: 25545198 },
+            { state: "Goa", capital: "Panaji", cm: "Pramod Sawant", population: 1458545 },
+            { state: "Gujarat", capital: "Gandhinagar", cm: "Bhupendra Patel", population: 60439692 },
+            { state: "Haryana", capital: "Chandigarh", cm: "Manohar Lal Khattar", population: 25351462 },
+            { state: "Himachal Pradesh", capital: "Shimla", cm: "Sukhvinder Singh Sukhu", population: 6864602 },
+            { state: "Jharkhand", capital: "Ranchi", cm: "Hemant Soren", population: 32988134 },
+            { state: "Karnataka", capital: "Bengaluru", cm: "Siddaramaiah", population: 61095297 },
+            { state: "Kerala", capital: "Thiruvananthapuram", cm: "Pinarayi Vijayan", population: 33406061 },
+            { state: "Madhya Pradesh", capital: "Bhopal", cm: "Shivraj Singh Chouhan", population: 72626809 },
+            { state: "Maharashtra", capital: "Mumbai", cm: "Eknath Shinde", population: 112374333 },
+            { state: "Manipur", capital: "Imphal", cm: "N. Biren Singh", population: 2855794 },
+            { state: "Meghalaya", capital: "Shillong", cm: "Conrad Sangma", population: 2966889 },
+            { state: "Mizoram", capital: "Aizawl", cm: "Zoramthanga", population: 1097206 },
+            { state: "Nagaland", capital: "Kohima", cm: "Neiphiu Rio", population: 1978502 },
+            { state: "Odisha", capital: "Bhubaneswar", cm: "Naveen Patnaik", population: 41974218 },
+            { state: "Punjab", capital: "Chandigarh", cm: "Bhagwant Mann", population: 27743338 },
+            { state: "Rajasthan", capital: "Jaipur", cm: "Ashok Gehlot", population: 68548437 },
+            { state: "Sikkim", capital: "Gangtok", cm: "Prem Singh Tamang", population: 610577 },
+            { state: "Tamil Nadu", capital: "Chennai", cm: "M. K. Stalin", population: 72147030 },
+            { state: "Telangana", capital: "Hyderabad", cm: "K. Chandrashekar Rao", population: 35193978 },
+            { state: "Tripura", capital: "Agartala", cm: "Manik Saha", population: 3673917 },
+            { state: "Uttar Pradesh", capital: "Lucknow", cm: "Yogi Adityanath", population: 199812341 },
+            { state: "Uttarakhand", capital: "Dehradun", cm: "Pushkar Singh Dhami", population: 10086292 },
+            { state: "West Bengal", capital: "Kolkata", cm: "Mamata Banerjee", population: 91276115 }
+        ];
+
+        var statesTable = document.getElementById('statesTable');
+        indianStates.map(state => {
+            statesTable.innerHTML += `<tr>
+                <td>${state.state}</td>
+                <td>${state.capital}</td>
+                <td>${state.cm}</td>
+                <td>${state.population}</td>
+            </tr>`;
+        });
+    </script>
+</body>
+</html>

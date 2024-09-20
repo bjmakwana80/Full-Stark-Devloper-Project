@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1 align="center">Data Storage Unit Conversions</h1>
+    </header>
+    <table border="1" cellpadding="10" width="50%" align="center">
+        <thead>
+            <th>Enter Kilobytes</th>
+            <th><input type="number" name="number" id="kilobytes" placeholder="Enter Kilobytes" required/></th>
+        </thead>
+        <thead>
+            <th colspan="2"><input type="button" value="Convert" onclick="getcon();"/></th>
+        </thead>
+        <tr>
+            <td>Kilobytes to Megabytes</td>
+            <td id="td1"></td>
+        </tr>
+        <tr>
+            <td>Megabytes to Gigabytes</td>
+            <td id="td2"></td>
+        </tr>
+        <tr>
+            <td>Gigabytes to Terabytes</td>
+            <td id="td3"></td>
+        </tr>
+    </table>
+    <script>
+        function getcon(){
+            var kilobytes = parseFloat(document.getElementById('kilobytes').value);
+        class MB{
+            constructor(kilobytes){
+                this.kilobytes = kilobytes;
+                console.log('Mega Bytes class constructer is called');
+            }
+            getMB(){
+                let temp = this.kilobytes / 1024 ;
+                return temp;
+            }
+        }
+        class GB extends MB{
+            constructor(kilobytes){
+                super(kilobytes);
+                console.log('Giga byte class constructer is called');
+            }
+            getGB(){
+                let temp1 = super.getMB() / 1024;
+                return temp1;
+            }
+        }
+        class TB extends GB{
+            constructor(kilobytes){
+                super(kilobytes);
+                console.log('Tera byte class constructer is called');
+            }
+            getTB(){
+                let temp2 = super.getGB() / 1024;
+                return temp2;
+            }
+        }
+        let b1 = new TB(kilobytes);
+        let temp = b1.getMB();
+        let temp1 = b1.getGB();
+        let temp2 = b1.getTB();
+        document.getElementById('td1').innerHTML = temp;
+        document.getElementById('td2').innerHTML = temp1;
+        document.getElementById('td3').innerHTML = temp2;
+        console.log("MB =" + temp);
+        console.log("GB =" + temp1);
+        console.log("TB =" + temp2);
+        }
+
+    </script>
+</body>
+</html>

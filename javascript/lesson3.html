@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table width="75%" border="1" cellspacing="10" cellpadding="10" align="center" bgcolor="#E3F9A6">
+        <tr bgcolor="#BDEDFF">
+            <td><b>India</b></td>
+            <td><b>England</b></td>
+            <td><b>Bangladesh</b></td>
+            <td><b>West Indies</b></td>
+        </tr>
+        <tr>
+            <td>
+                <ol id="t1"></ol>
+            </td>
+            <td>
+                <ol id="t2"></ol>
+            </td>
+            <td>
+                <ol id="t3"></ol>
+            </td>
+            <td>
+                <ol id="t4"></ol>
+            </td>
+        </tr>
+        <tr bgcolor="#BDEDFF">
+            <td><b>Australia</b></td>
+            <td><b>South Africa</b></td>
+            <td><b>Sri Lanka</b></td>
+            <td><b>Pakistan</b></td>
+        </tr>
+        <tr>
+            <td>
+                <ol id="t5"></ol>
+            </td>
+            <td>
+                <ol id="t6"></ol>
+            </td>
+            <td>
+                <ol id="t7"></ol>
+            </td>
+            <td>
+                <ol id="t8"></ol>
+            </td>
+        </tr>
+    </table>
+    <script>
+        var team1 = `<li>Rohit Sharma</li>
+  <li>Hardik Pandya</li>
+  <li>Yashasvi Jaiswal</li>
+  <li>Virat Kohli</li>
+  <li>Suryakumar Yadav</li>
+  <li>Rishabh Pant</li>
+  <li>Sanju Samson</li>
+  <li>Shivam Dube</li>
+  <li>Ravindra Jadeja</li>
+  <li>Axar Patel</li>
+  <li>Kuldeep Yadav</li>
+  <li>Yuzvendra Chahal</li>
+  <li>Arshdeep Singh</li>
+  <li>Jasprit Bumrah</li>
+  <li>Mohmed Siraj</li>`;
+
+        var team2 = `<li>Eoin Morgan</li>
+  <li>Saqib Mahmood</li>
+  <li>Tymal Mills</li>
+  <li>David Payne</li>
+  <li>Adil Rashid</li>
+  <li>Jason Roy</li>
+  <li>Phil Salt</li>
+  <li>James Vince</li>
+  <li>Moeen Ali</li>
+  <li>Sam Billings</li>
+  <li>Liam Dawson</li>
+  <li>George Garton</li>
+  <li>Tom Banton</li>
+  <li>Chris Jordan</li>
+  <li>Liam Livingstone</li>`;
+        var team3 = `<li>Mahmudullah</li>
+  <li>Shakib Al Hasan</li>
+  <li>Mushfiqur Rahim</li>
+  <li>Soumya Sarkar</li>
+  <li>Liton Kumar Das</li>
+  <li>Afif Hossain</li>
+  <li>Mohammad Naim</li>
+  <li>Nurul Hasan Sohan</li>
+  <li>Shamim Hossain</li>
+  <li>Mustafizur Rahman</li>
+  <li>Taskin Ahmed</li>
+  <li>Mohammad Saifuddin</li>
+  <li>Shoriful Islam</li>
+  <li>Mahedi Hasan</li>
+  <li>Rubel Hossain</li>`;
+        var team4 = `<li>Kieron Pollard (Captain)</li>
+  <li>Nicholas Pooran</li>
+  <li>Roston Chase</li>
+  <li>Dwayne Bravo</li>
+  <li>Chris Gayle</li>
+  <li>Andre Fletcher</li>
+  <li>Obed McCoy</li>
+  <li>Evin Lewis</li>
+  <li>Shimron Hetmyer</li>
+  <li>Andre Russell</li>
+  <li>Lendl Simmons</li>
+  <li>Hayden Walsh Jr.</li>
+  <li>Oshane Thomas</li>
+  <li>Jason Holder</li>
+  <li>Ravi Rampaul</li>`;
+        var team5 = `<li>Aaron Finch</li>
+  <li>Steve Smith</li>
+  <li>David Warner</li>
+  <li>Glenn Maxwell</li>
+  <li>Mitchell Starc</li>
+  <li>Pat Cummins</li>
+  <li>Adam Zampa</li>
+  <li>Marcus Stoinis</li>
+  <li>Alex Carey</li>
+  <li>Josh Hazlewood</li>
+  <li>Nathan Lyon</li>
+  <li>Ashton Agar</li>
+  <li>Marnus Labuschagne</li>
+  <li>Matthew Wade</li>
+  <li>Travis Head</li>`;
+        var team6 = `<li>Quinton de Kock</li>
+  <li>Kagiso Rabada</li>
+  <li>Faf du Plessis</li>
+  <li>David Miller</li>
+  <li>Lungi Ngidi</li>
+  <li>Tabraiz Shamsi</li>
+  <li>Anrich Nortje</li>
+  <li>Aiden Markram</li>
+  <li>Temba Bavuma</li>
+  <li>Rassie van der Dussen</li>
+  <li>Heinrich Klaasen</li>
+  <li>Andile Phehlukwayo</li>
+  <li>Reeza Hendricks</li>
+  <li>Dwaine Pretorius</li>
+  <li>George Linde</li>`;
+        var team7 = `<li>Kusal Perera</li>
+  <li>Dimuth Karunaratne</li>
+  <li>Dhananjaya de Silva</li>
+  <li>Angelo Mathews</li>
+  <li>Wanindu Hasaranga</li>
+  <li>Dasun Shanaka</li>
+  <li>Isuru Udana</li>
+  <li>Avishka Fernando</li>
+  <li>Nuwan Pradeep</li>
+  <li>Dushmantha Chameera</li>
+  <li>Kamindu Mendis</li>
+  <li>Charith Asalanka</li>
+  <li>Lahiru Kumara</li>
+  <li>Pathum Nissanka</li>
+  <li>Ramesh Mendis</li>`;
+        var team8 = `<li>Babar Azam</li>
+  <li>Mohammad Rizwan</li>
+  <li>Shadab Khan</li>
+  <li>Shaheen Afridi</li>
+  <li>Hasan Ali</li>
+  <li>Mohammad Hafeez</li>
+  <li>Fakhar Zaman</li>
+  <li>Mohammad Nawaz</li>
+  <li>Haris Rauf</li>
+  <li>Imad Wasim</li>
+  <li>Usman Qadir</li>
+  <li>Sarfaraz Ahmed</li>
+  <li>Faheem Ashraf</li>
+  <li>Sohaib Maqsood</li>
+  <li>Haider Ali</li>`;
+
+        document.getElementById(`t1`).innerHTML = team1;//India
+        document.getElementById(`t2`).innerHTML = team2;//England
+        document.getElementById(`t3`).innerHTML = team3;//Bangladesh
+        document.getElementById(`t4`).innerHTML = team4;//West Indies
+        document.getElementById(`t5`).innerHTML = team5;//Australia
+        document.getElementById(`t6`).innerHTML = team6;//South Africa
+        document.getElementById(`t7`).innerHTML = team7;//Sri Lanka
+        document.getElementById(`t8`).innerHTML = team8;//Pakistan
+    </script>
+</body>
+
+</html>

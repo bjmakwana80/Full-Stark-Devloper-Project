@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1 align="center">Paragraph Tag Fontsize Increase</h1>
+    </header>
+    <hr>
+    <table align="center" border="0" cellpaddin="10" width="20%">
+        <thead>
+            <th ><input type="button" value="Font + Size" id="increaseFontsize" onclick="fontSize(this.id);" /></th>
+            <th ><input type="button" value="Font - Size" id="decreaseFontSize" onclick="fontSize(this.id);" /></th>
+        </thead>
+    </table>
+    <p id="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Reiciendis possimus obcaecati perspiciatis eos deleniti ea accusantium commodi itaque rerum blanditiis ducimus
+        accusamus praesentium voluptatem error voluptatum, fugit voluptas ut exercitationem. Lorem ipsum dolor sit amet
+        consectetur adipisicing elit. Sunt asperiores beatae labore ullam cupiditate eveniet, fugit architecto saepe
+        laudantium error omnis eaque quae vel aut id ipsam voluptatem, atque expedita. Lorem ipsum dolor, sit amet
+        consectetur adipisicing elit. Voluptates temporibus minima assumenda, explicabo, id praesentium quisquam
+        perspiciatis vero maxime alias totam, ut esse asperiores magni nemo labore fuga veritatis? Quaerat. Lorem ipsum
+        dolor sit amet consectetur adipisicing elit. Tenetur, nemo ducimus. Quod adipisci aliquam delectus saepe
+        excepturi neque ullam similique ea nihil animi, repellendus commodi quam vel ipsum blanditiis aliquid. Lorem
+        ipsum dolor sit amet consectetur adipisicing elit. Quas excepturi, illum assumenda quos perferendis iusto, nihil
+        perspiciatis sed debitis ab explicabo quidem repudiandae. Deserunt magni delectus ullam necessitatibus commodi
+        repellat. Excepturi quo iste architecto error aspernatur, sint odio nulla sit accusamus alias saepe voluptas?
+        Blanditiis qui, tempora quaerat necessitatibus aliquid quidem totam! Odio, modi consequatur inventore totam at
+        sint ea, eaque provident voluptatem maxime deleniti reprehenderit omnis labore eligendi saepe facere laborum
+        quod sapiente odit! Nesciunt enim facere necessitatibus aut quia, in dolorem officiis et obcaecati beatae
+        repellendus optio vel totam laboriosam qui voluptates inventore maxime perferendis architecto consectetur
+        fugiat.</p>
+</body>
+    <script>
+        var text = document.getElementById('text');
+        var minFontSize = 10;
+        var maxFontSize = 50;
+        var stepSize = 2;
+        let fontSize = function(buttonId){
+            let currentSize = parseInt(window.getComputedStyle(text).fontSize);
+           
+            if (buttonId === 'increaseFontsize'){
+                if(currentSize < maxFontSize){
+                    text.style.fontSize = (currentSize + stepSize) + 'px';
+                }
+            }
+            else if (buttonId === 'decreaseFontSize'){
+                if(currentSize > minFontSize){
+                    text.style.fontSize = (currentSize - stepSize) + 'px';
+                }
+            }
+            console.log(buttonId,currentSize);
+        }
+    </script>
+</html>

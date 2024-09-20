@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body bgcolor="#C3FDB8">
+    <header>
+        <h1 align="center">BMI Calculator</h1>
+    </header>
+    <hr width="80%">
+    <form action="">
+        <table align="center" border="1" cellspacing="5" cellpadding="10" width="40%" height="250px" bgcolor="#87AFC7">
+            <tr>
+                <td>Enter Height &nbsp;<input type="number" id="height" placeholder="Enter Height" 
+                        required />.cm</td>
+            </tr>
+            <tr>
+                <td>Enter Weight &nbsp;<input type="number" id="weight" placeholder="Enter Weight"
+                        required />.kg</td>
+            </tr>
+            <tr>
+                <td bgcolor="#808000" align="center"><input type="button" value="BMI Calculator"
+                        onclick="calculate();" /></td>
+            </tr>
+            <tr>
+                <td bgcolor="#E3F9A6" id="bmi"></td>
+            </tr>
+        </table>
+    </form>
+    <script>
+        function calculate() {
+            let height = document.getElementById('height').value;
+            let weight = document.getElementById('weight').value;
+            console.log(height, weight);
+            if (height === "") {
+                alert('please give numeric input in amount');
+                document.getElementById('height').focus();
+            }
+            else if (weight === "") {
+                alert('please give numeric input in rate');
+                document.getElementById('weight').focus();
+            }
+            else {
+                amount = parseFloat(height);
+                rate = parseFloat(weight);
+                var meters = height / 100;
+                var store = meters * meters;
+                var bmi_calculate = weight / store;
+                document.getElementById('bmi').innerHTML = bmi_calculate.toFixed(2);
+            }
+        }
+    </script>
+</body>
+
+</html>

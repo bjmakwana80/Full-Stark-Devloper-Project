@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h2 align="center">Multiplication Table of 10</h2>
+    <table border="1" align="center" cellpadding="5">
+        <thead>
+            <tr>
+                <th colspan="2">Multiplier</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+
+    </table>
+    <table border="1" align="center" cellpadding="5" id="output">
+
+    </table>
+    <script>
+        var output = document.getElementById('output');
+
+        let multi = 10;
+        let count = 1;
+        while (count <= 10) {
+            let result = multi * count;
+            output.innerHTML += ` <tr>
+                    <td>${multi}</td>
+                    <td>x</td>
+                    <td>${count}</td>
+                    <td>=</td>
+                    <td>${result}</td>
+                </tr>`;
+            count++;
+        }
+    </script>
+
+</body>
+
+</html>

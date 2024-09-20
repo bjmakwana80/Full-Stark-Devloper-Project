@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body bgcolor="#F0FFFF">
+    <header>
+        <h1 align="center">Triangle Area Calculator
+        </h1>
+    </header>
+    <hr width="80%">
+    <form action="">
+        <table align="center" border="1" width="40%" cellpadding="10" cellspacing="5" bgcolor="#E3F9A6" height="250px">
+            <tr>
+                <td>Enter Type Base Here &nbsp;<input type="number" id="base" placeholder="Enter Type Base Here" required /></td>
+            </tr>
+            <tr>
+                <td>Enter The Height Here &nbsp;<input type="number" id="height" placeholder="Enter The Height Here" required /></td>
+            </tr>
+            <tr>
+                <td align="center" bgcolor="#99C68E"><input type="button" value="Triangle Area Calculator"
+                        onclick="area();" /></td>
+            </tr>
+            <tr>
+                <td bgcolor="#FFFFCC" id="""ans"></td>
+            </tr>
+        </table>
+    </form>
+    <script>
+        function area() {
+            let base = document.getElementById('base').value;
+            let height = document.getElementById('height').value;
+            console.log(base, height);
+            if (base === "") {
+                alert('please give numeric input in Base');
+                document.getElementById('base').focus();
+            }
+            else if (height === "") {
+                alert('please give numeric input in Height');
+                document.getElementById('height').focus();
+            }
+            else {
+                base = parseInt(base);
+                height = parseInt(height);
+                let triangle = base * height / 2;
+                document.getElementById('ans').innerHTML = triangle;
+            }
+        }
+
+    </script>
+</body>
+
+</html>

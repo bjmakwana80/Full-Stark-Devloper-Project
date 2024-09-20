@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+        <table border="1" cellpadding="10" align="center">
+            <thead>
+                <th colspan="2"><select name="year" id="year" required /></select></th>
+                <th colspan="2"><select name="month" id="month" required /></select></th>
+            </thead>
+            <thead>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+            </thead>
+            <tbody align="center" id="calendar">
+
+            </tbody>
+        </table>
+    </form>
+    <script src="gettagid.js"></script>
+    <script>
+            let count = 1;
+            var cal = '';
+            let date = new Date(2024,6, 0);
+            let lastDate = date.getDate();
+            date = new Date(2024,6 - 1, 1);
+            let firstDay = date.getDay();
+            let empty = 0;
+            let isFirstRow = true;
+            while (count <= lastDate) {
+                cal += `<tr>`;
+                let td = '';
+                let col = 1;
+                while (isFirstRow === true && empty < firstDay) {
+                    td += `<td></td>`;
+                    empty = empty + 1;
+                }
+                if (isFirstRow === true) {
+                    col = firstDay + 1;
+                    isFirstRow = false;
+                }
+                while (col <= 7 && count <= lastDate) {
+                    td += `<td>${count}</td>`;
+                    col++;
+                    count++;
+                }
+                cal += td + `</tr>`;
+            }
+    
+            $$(`calendar`,cal);
+            
+
+
+
+    </script>
+</body>
+
+</html>

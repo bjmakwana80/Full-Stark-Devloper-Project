@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Example of filter function</h1>
+    <hr>
+    <form action="" onsubmit="return searchBus();">
+        <table align="center" width="90%" border="1" cellpadding="10">
+            <tr>
+                <td>
+                    <input type="text" name="from" id="from" placeholder="from" required />
+                </td>
+                <td>
+                    <input type="text" name="to" id="to" placeholder="to" required />
+                </td>
+                <td colspan="2">
+                    <label for="ac">
+                        <input type="radio" name="bustype" id="ac" value="AC" /> AC
+                    </label>
+                    <label for="nonac">
+                        <input type="radio" name="bustype" id="nonac" value="non AC" /> Non AC
+                    </label>
+                </td>
+                <td>
+                    <input type="submit" value="search" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <table align="center" width="90%" border="1" cellpadding="10">
+        <thead>
+
+            <tr>
+                <th>Sr</th>
+                <th>From</th>
+                <th>To</th>
+                <th>type</th>
+                <th>Depature Time</th>
+            </tr>
+        </thead>
+        <tbody id="output">
+
+        </tbody>
+    </table>
+    <script>
+
+        var output = document.getElementById('output');
+        var routes = [
+            { from: 'bhavnagar', to: 'surat', busType: 'AC', departureTime: '08:00 AM' },
+            { from: 'rajkot', to: 'baroda', busType: 'non AC', departureTime: '09:30 AM' },
+            { from: 'ahmedabad', to: 'jamnagar', busType: 'AC', departureTime: '11:15 AM' },
+            { from: 'baroda', to: 'bhavnagar', busType: 'non AC', departureTime: '01:00 PM' },
+            { from: 'surat', to: 'rajkot', busType: 'AC', departureTime: '02:45 PM' },
+            { from: 'jamnagar', to: 'ahmedabad', busType: 'non AC', departureTime: '04:30 PM' },
+            { from: 'bhavnagar', to: 'rajkot', busType: 'AC', departureTime: '06:15 PM' },
+            { from: 'surat', to: 'baroda', busType: 'non AC', departureTime: '07:45 PM' },
+            { from: 'rajkot', to: 'jamnagar', busType: 'AC', departureTime: '09:30 PM' },
+            { from: 'baroda', to: 'ahmedabad', busType: 'non AC', departureTime: '11:15 PM' },
+            { from: 'ahmedabad', to: 'bhavnagar', busType: 'AC', departureTime: '01:00 AM' },
+            { from: 'jamnagar', to: 'rajkot', busType: 'non AC', departureTime: '02:45 AM' },
+            { from: 'baroda', to: 'surat', busType: 'AC', departureTime: '04:30 AM' },
+            { from: 'bhavnagar', to: 'jamnagar', busType: 'non AC', departureTime: '06:15 AM' },
+            { from: 'rajkot', to: 'ahmedabad', busType: 'AC', departureTime: '07:45 AM' },
+            { from: 'ahmedabad', to: 'baroda', busType: 'non AC', departureTime: '09:30 AM' },
+            { from: 'surat', to: 'bhavnagar', busType: 'AC', departureTime: '11:15 AM' },
+            { from: 'jamnagar', to: 'rajkot', busType: 'non AC', departureTime: '01:00 PM' },
+            { from: 'baroda', to: 'surat', busType: 'AC', departureTime: '02:45 PM' },
+            { from: 'rajkot', to: 'bhavnagar', busType: 'non AC', departureTime: '04:30 PM' },
+            { from: 'ahmedabad', to: 'surat', busType: 'AC', departureTime: '06:15 PM' },
+            { from: 'baroda', to: 'rajkot', busType: 'non AC', departureTime: '07:45 PM' },
+            { from: 'bhavnagar', to: 'baroda', busType: 'AC', departureTime: '09:30 PM' },
+            { from: 'jamnagar', to: 'bhavnagar', busType: 'non AC', departureTime: '11:15 PM' },
+            { from: 'surat', to: 'ahmedabad', busType: 'AC', departureTime: '01:00 AM' },
+            { from: 'rajkot', to: 'baroda', busType: 'non AC', departureTime: '02:45 AM' },
+            { from: 'bhavnagar', to: 'baroda', busType: 'AC', departureTime: '04:30 AM' },
+            { from: 'jamnagar', to: 'rajkot', busType: 'non AC', departureTime: '06:15 AM' },
+            { from: 'surat', to: 'bhavnagar', busType: 'AC', departureTime: '07:45 AM' },
+            { from: 'baroda', to: 'rajkot', busType: 'non AC', departureTime: '09:30 AM' },
+            { from: 'ahmedabad', to: 'surat', busType: 'AC', departureTime: '11:15 AM' },
+            { from: 'rajkot', to: 'bhavnagar', busType: 'non AC', departureTime: '01:00 PM' },
+            { from: 'baroda', to: 'jamnagar', busType: 'AC', departureTime: '02:45 PM' },
+            { from: 'bhavnagar', to: 'surat', busType: 'non AC', departureTime: '04:30 PM' },
+            { from: 'surat', to: 'rajkot', busType: 'AC', departureTime: '06:15 PM' },
+        ]
+
+        let searchBus = function () {
+            var from = document.getElementById('from').value; //bhavnagar
+            var to = document.getElementById('to').value; //surat
+            var output = document.getElementById('output');
+            var bustype = null;
+            try {
+                bustype = document.querySelector("input[name='bustype']:checked").value;
+            }
+            catch (error) {
+                bustype = '';
+            }
+            finally {
+                console.log(from, to);
+                var availableRoutes = routes.filter(function (item) {
+                    //console.log(item);
+                    if(bustype === '' &&  item.from === from && item.to === to)
+                        return item;
+                    else if (bustype === item.busType && item.from === from && item.to === to)
+                        return item;
+                })
+                // console.log(availableRoutes);
+                var content = '';
+                output.innerHTML = '';
+                if (availableRoutes.length === 0) {
+                    content = `<tr><td colspan='5' align='center'><font color='red'>no bus found from ${from} to ${to}</font></td></tr>`;
+                    output.innerHTML = content;
+                }
+                else {
+                    availableRoutes.map(function (item, index) {
+                        //object destrucrting
+                        let { from, to, busType, departureTime } = item;
+
+                        content = `<tr>
+                <td>${index + 1}</td>
+                <td>${from}</td>
+                <td>${to}</td>
+                <td>${busType}</td>
+                <td>${departureTime}</td>
+            </tr>`;
+                        output.innerHTML += content;
+                    })
+                }
+            }
+
+            return false;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body bgcolor="#FFFFC2">
+    <header>
+        <h1 align="center">Simple Interest Calculator</h1>
+    </header>
+    <hr width="80%">
+    <form action="">
+        <table align="center" border="1" cellspacing="5" cellpadding="10" width="40%" height="250px" bgcolor="#87AFC7">
+            <tr>
+                <td>Enter Principal Amount &nbsp;<input type="number" id="amount" placeholder="Enter Principal Amount"
+                        required /></td>
+            </tr>
+            <tr>
+                <td>Enter Rate of interest% &nbsp;<input type="number" id="rate" placeholder="Enter Rate of interest%"
+                        required /></td>
+            </tr>
+            <tr>
+                <td>Enter Number of years &nbsp;<input type="number" id="years" placeholder="Enter Number of years"
+                        required /></td>
+            </tr>
+            <tr>
+                <td bgcolor="#808000" align="center"><input type="button" value="Interest Calculator"
+                        onclick="calculate();" /></td>
+            </tr>
+            <tr>
+                <td bgcolor="#E3F9A6" id="interest"></td>
+            </tr>
+        </table>
+    </form>
+    <script>
+        function calculate() {
+            let amount = document.getElementById('amount').value;
+            let rate = document.getElementById('rate').value;
+            let years = document.getElementById(`years`).value;
+            console.log(amount, rate, years);
+            if (amount === "") {
+                alert('please give numeric input in amount');
+                document.getElementById('amount').focus();
+            }
+            else if (rate === "") {
+                alert('please give numeric input in rate');
+                document.getElementById('rate').focus();
+            }
+            else if (years === "") {
+                alert(`please give numeric input in years`);
+                document.getElementById(`years`).focus();
+            }
+            else {
+                amount = parseFloat(amount);
+                rate = parseFloat(rate);
+                years = parseInt(years);
+                let interest_rate = amount * rate / 100 * years;
+                document.getElementById('interest').innerHTML = interest_rate;
+            }
+        }
+    </script>
+</body>
+
+</html>

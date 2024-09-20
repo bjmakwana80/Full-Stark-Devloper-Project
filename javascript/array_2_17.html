@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .center {
+        text-align: center;
+        font-family: 'Courier New', monospace;
+    }
+
+    ol {
+        display: inline-block;
+        text-align: center;
+    }
+    .table{
+        display: inline-block;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <header>
+        <h1 class="center">Example 2 Array Map function use</h1>
+    </header>
+    <article class="center">
+        <ol id="output">
+        </ol>
+    </article>
+    <table align="center" cellpadding="10" border="1" width="50%">
+        <tr class="center">
+            <td>Total Male = <span id="m"></span></td>
+            <td>Total Female = <span id="f"></span></td>
+        </tr>
+    </table>
+    <script>
+        var output = document.getElementById('output');
+        var m = document.getElementById('m');
+        var f = document.getElementById('f');
+        let male = 0;
+        let female = 0;
+        let names = [
+            "Bipinbhai", "Rameshbhai", "Niteshbhai", "Rivaba", "Kirtiaben",
+            "Pankajbhai", "Manojbhai", "Rajeshbhai", "Geetaben", "Bhavnaben",
+            "Ketanbhai", "Mehulbhai", "Priyaben", "Devangbhai", "Bhavitaben",
+            "Amitkumar", "Rajkumar", "Mahammadkhan", "Jayagauri", "harpalsinh"];
+
+
+        names.map(function (name) {
+            let content = `<li>${name}</li>`;
+            output.innerHTML += content;
+            if (name.endsWith("bhai") || name.endsWith("khan") || name.endsWith("sinh") || name.endsWith("kumar")) {
+                male++;
+            } else if (name.endsWith("ben") || name.endsWith("ba") || name.endsWith("gauri")) {
+                female++;
+            }
+        });
+        m.innerHTML = male;
+        f.innerHTML = female;
+        console.log("Names:", names);
+        console.log("Male count:", male);
+        console.log("Female count:", female);
+    </script>
+</body>
+
+</html>

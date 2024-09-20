@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 00;
+        font-family: consolas;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: black;
+    }
+    .wave {
+        position: relative;
+        -webkit-border-reflect:below -12px linear-gradient(transparent, rgba(0,0,0,0.2));
+    }
+    .wave span {
+        position: relative;
+        display: inline-block;
+        color: #fff;
+        font-size: 100px;
+        text-transform: uppercase;
+        animation: animate 1.5s ease-in-out infinite;
+        animation-delay: calc(.1s * var(--a));
+    }
+    @keyframes animate{
+        0%,100%{
+            transform: translateY(0px);
+        }
+        20%{
+            transform: translateY(-20px);
+        }
+        40%{
+            transform: translateY(0px);
+        }
+    }
+</style>
+
+<body>
+    <div class="wave">
+        <span style="--a:1">L</span>
+        <span style="--a:2">O</span>
+        <span style="--a:3">A</span>
+        <span style="--a:4">D</span>
+        <span style="--a:5">I</span>
+        <span style="--a:6">N</span>
+        <span style="--a:7">G</span>
+        <span style="--a:8">.</span>
+        <span style="--a:9">.</span>
+        <span style="--a:10">.</span>
+    </div>
+</body>
+
+</html>

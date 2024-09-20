@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Score Table</title>
+
+</head>
+
+<body>
+    <header><h1 align="center">Mens T20 World Cup 2024</h1></header>
+    <table align="center" border="0" cellpaddin="10" width="20%">
+        <thead>
+            <th ><input type="button" value="Hide Table" id="tableHide" onclick="show_hide_table(this.id);" /></th>
+            <th ><input type="button" value="Show Table" id="tableShow" onclick="show_hide_table(this.id);" /></th>
+        </thead>
+    </table>
+    <table border="1" cellpadding="10" align="center">
+        
+        
+        <tbody id="table">
+                <tr>
+                    <th>Match No</th>
+                    <th>Team 1</th>
+                    <th>Score 1</th>
+                    <th>Team 2</th>
+                    <th>Score 2</th>
+                    <th>Result</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td bgcolor="yellow">India</td>
+                    <td bgcolor="green">300/7</td>
+                    <td>Pakistan</td>
+                    <td>280/9</td>
+                    <td>India won by 20 runs</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td bgcolor="yellow">Australia</td>
+                    <td bgcolor="green">270/8</td>
+                    <td>England</td>
+                    <td>250 all out</td>
+                    <td>Australia won by 20 runs</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>New Zealand</td>
+                    <td>310/7</td>
+                    <td bgcolor="yellow">South Africa</td>
+                    <td bgcolor="green">320/6</td>
+                    <td>South Africa won by 10 runs</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td bgcolor="yellow">Bangladesh</td>
+                    <td bgcolor="green">240/5</td>
+                    <td>West Indies</td>
+                    <td>235/9</td>
+                    <td>Bangladesh won by 5 wickets</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Sri Lanka</td>
+                    <td>200 all out</td>
+                    <td bgcolor="yellow">Afghanistan</td>
+                    <td bgcolor="green">205/6</td>
+                    <td>Afghanistan won by 4 wickets</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td bgcolor="yellow">England</td>
+                    <td bgcolor="green">280/5</td>
+                    <td>India</td>
+                    <td>270/9</td>
+                    <td>England won by 10 runs</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td bgcolor="yellow">Australia</td>
+                    <td bgcolor="green">350/4</td>
+                    <td>South Africa</td>
+                    <td>340/8</td>
+                    <td>Australia won by 10 runs</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Pakistan</td>
+                    <td>255 all out</td>
+                    <td bgcolor="yellow">New Zealand</td>
+                    <td bgcolor="green">260/7</td>
+                    <td>New Zealand won by 5 runs</td>
+                </tr>
+        </tbody>
+    </table>
+
+    <script>
+        var table = document.getElementById('table');
+        let show_hide_table = function(buttonId){
+            let hide = table.style.display == '';
+            let show = table.style.display == 'none';
+           
+            if (buttonId === 'tableHide'){
+                table.style.display = 'none';
+            }
+            else if (buttonId === 'tableShow'){
+                table.style.display ='';
+            }
+            console.log(buttonId,show,hide);
+        }
+    </script>
+</body>
+
+</html>

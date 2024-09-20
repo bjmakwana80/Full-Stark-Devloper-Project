@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+* {
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
+}
+body{
+    background-color: #34353b;
+    font-family: "Roboto", sans-serif;
+    color: white;
+}
+
+.n1 {
+    /* background: linear-gradient(to right, #FF9933, #FFFFFF, #138808); */
+    border: 2px solid #575757;
+    display: flex;
+    justify-content: space-between;
+    height: max-content;
+}
+
+.ic {
+    font-weight: bold;
+    font-size: 25px;
+    margin-top: 15px;
+}
+.s2{
+    display: flex;
+}
+.s1 {
+    height: 40px;
+    width: 400px;
+    margin-top: 15px;
+    right: 15px;
+}
+input::placeholder{
+    text-align: center;
+}
+
+.input-group .fa-magnifying-glass {
+    position: absolute;
+    left: 15px;
+    top: 55%;
+    transform: translateY(-50%);
+    color: #aaa;
+    pointer-events: none;
+    /* Make sure the icon is not clickable */
+}
+
+.b1 {
+    background-color: #ff8750;
+    color: white;
+    font-weight: bold;
+    height: 40px;
+    border: 2px solid #575757;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-top: 15px;
+}
+
+.b2 {
+    font-weight: bold;
+    transition: transform 0.3s ease-in-out;
+}
+.ic2{
+    margin-top: 23px;
+    margin-right: 25px;
+    color: aliceblue;
+}
+.ac{
+    display: flex;
+    margin-right: 10px;
+    margin-top: 13px;
+    padding: 10px;
+    border: 3px solid skyblue;
+    background-color: #575757;
+    border-radius: 100%;
+    background-position: center;
+    transition: transform 0.3s ease-in-out;
+    color: aliceblue;
+}
+.ac:hover{
+    border: 3px solid rgb(0, 0, 0);
+    background-color: skyblue;
+    transform: scale(1.2);
+}
+.ic2:hover{
+    color: #05bbf3;
+    filter: brightness(50px);
+}
+.b1:hover{
+    color: #05bbf3;
+    filter: brightness(50px);
+}
+.b3{
+    color: red;
+    cursor: pointer;
+    transition: outline-color 2s ease-in-out;
+}
+.b3:hover{
+    color: #fffcfc;
+    outline-color: 3px solid blue;
+}
+header {
+    height: 90vh;
+    padding: 36px 100px;
+    background-image: url(./images/model_bw.png);
+    background-position: right;
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: drop-shadow(0px 0px 20px rgba(255, 255, 255, 0.616));
+    width: 100vw;
+  }
+  .i2{
+    color: gold;
+    font-size: 50px;
+    font-weight: bolder;
+  }
+  .container{
+    display: block;
+    justify-content: center;
+  }
+  .landing {
+    display: flex;
+    height: 70vh;
+    background-color: transparent;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .landing .intro {
+    display: flex;
+    flex-direction: column;
+  }
+  .landing button{
+    width: 50%;
+  }

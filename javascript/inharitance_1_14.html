@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1 align="center">Simple Calcultion to Weight</h1>
+    </header>
+    <table border="1" cellpadding="10" align="center" width="50%">
+        <thead>
+            <th>Enter Grams</th>
+            <th><input type="number" name="number" id="grams" placeholder="Enter Grams" required /></th>
+        </thead>
+        <thead>
+            <th colspan="2"><input type="button" value="Convert" onclick="getcal();" /></th>
+        </thead>
+        <tr>
+            <td>Grams to Kilograms</td>
+            <td id="td2"></td>
+        </tr>
+        <tr>
+            <td>Kilograms to Ton</td>
+            <td id="td3"></td>
+        </tr>
+        <tr>
+            <td>Ton to MegaTon</td>
+            <td id="td4"></td>
+        </tr>
+    </table>
+
+    <script>
+
+        function getcal() {
+            var grams = parseFloat(document.getElementById('grams').value);
+            class KG {
+                constructor(grams) {
+                    this.grams = grams;
+                    console.log('Kilograms class constructor is called');
+                }
+                getKg() {
+                    let temp1 = this.grams / 1000;
+                    return temp1;
+                }
+            }
+            class TON extends KG {
+                constructor(grams) {
+                    super(grams);
+                    console.log('TON class constructor is called');
+                }
+                getTon() {
+                    let temp2 = super.getKg() / 1000;
+                    return temp2;
+                }
+            }
+            class MegaTON extends TON {
+                constructor(grams) {
+                    super(grams);
+                    console.log('Mega TON class constuctor is called');
+                }
+                getMegaTon() {
+                    let temp3 = super.getTon() / 1000000;
+                    return temp3;
+                }
+            }
+            let g1 = new MegaTON(grams);
+            let temp1 = g1.getKg();
+            let temp2 = g1.getTon();
+            let temp3 = g1.getMegaTon();
+
+            document.getElementById('td2').innerHTML = temp1;
+            document.getElementById('td3').innerHTML = temp2;
+            document.getElementById('td4').innerHTML = temp3;
+            console.log("Kilograms =" + temp1);
+            console.log("Ton =" + temp2);
+            console.log("Megaton =" + temp3);
+
+        }
+    </script>
+</body>
+
+</html>

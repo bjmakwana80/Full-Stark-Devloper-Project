@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <style>
+        input {
+            height: 100px;
+            width: 100px;
+            font-size: 72px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tic Tac Toe</h1>
+    <hr>
+    <table align="center" cellpadding="10">
+        <tr>
+            <td><input type="button" value=" - "></td>
+            <td><input type="button" value=" - "></td>
+            <td><input type="button" value=" - "></td>
+        </tr>
+        <tr>
+            <td><input type="button" value=" - "></td>
+            <td><input type="button" value=" - "></td>
+            <td><input type="button" value=" - "></td>
+        </tr>
+        <tr>
+            <td><input type="button" value=" - "></td>
+            <td><input type="button" value=" - "></td>
+            <td><input type="button" value=" - "></td>
+        </tr>
+    </table>
+
+    <script>
+        // Create an array/list that has reference of all input tags
+        var buttons = document.getElementsByTagName('input');
+        var label = 'X';
+
+        // Initialize the board state
+        var board = Array(9).fill(null);
+        console.log(board);
+
+        // Define the winning conditions
+        var winningConditions = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ];
+
+        // Function to check for a win
+        function checkWin(board) {
+            for (let i = 0; i < winningConditions.length; i++) {
+                let [a, b, c] = winningConditions[i];
+                if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                    return board[a]; // Return the winning label ('X' or '0')
+                }
+            }
+            return null; // No winning condition met
+        }
+
+        // Function to handle button click
+        function handleClick(index) {
+            // Update board state
+            board[index] = label;
+
+            // Update the button's value
+            buttons[index].value = label;
+            buttons[index].disabled = true; // Disable the button after it's clicked
+
+            // Check for a win
+            const winner = checkWin(board);
+            if (winner) {
+                alert(winner + ' wins!');
+                resetGame();
+                return;
+            }
+
+            // Switch label for the next move
+            label = label === 'X' ? '0' : 'X';
+        }
+
+        // Attach the click handlers to the buttons
+        for (let i = 0; i < buttons.length; i++) {
+            (function(index) {
+                buttons[index].onclick = function() {
+                    handleClick(index);
+                };
+            })(i);
+        }
+
+        // Function to reset the game
+        function resetGame() {
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].value = ' - ';
+                buttons[i].disabled = false;
+            }
+            board.fill(null);
+            label = 'X';
+        }
+    </script>
+</body>
+
+</html>
